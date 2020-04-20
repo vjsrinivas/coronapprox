@@ -4,7 +4,7 @@ android {
     compileSdkVersion 25
 
     defaultConfig {
-        applicationId "ch.uepaa.quickstart"
+        applicationId 'com.utk.coronapprox'
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 8
@@ -35,6 +35,7 @@ dependencies {
     // android
     implementation 'com.android.support:appcompat-v7:25.3.1'
     implementation 'com.android.support:design:25.3.1'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
     // libs
     implementation 'com.larswerkman:HoloColorPicker:1.5'
     // p2pkit
