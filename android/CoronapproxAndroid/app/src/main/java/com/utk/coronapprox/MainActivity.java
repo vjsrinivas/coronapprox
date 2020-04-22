@@ -1,9 +1,16 @@
 package com.utk.coronapprox;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -22,6 +29,9 @@ import ch.uepaa.p2pkit.discovery.ProximityStrength;
 public class MainActivity extends AppCompatActivity {
     private static final String APP_KEY = "ccdae0d705cd4f2d83540bc5a0c0b766";
     private final Set<Peer> nearbyPeers = new HashSet<>();
+    private final ArrayList<String> test_list = new ArrayList<>();
+    private static int total_num_peers = 0;
+    private Date lastUpdated = new Date();
 
     public void enableP2PKit() {
         try {
@@ -84,13 +94,15 @@ public class MainActivity extends AppCompatActivity {
         public void onDisabled() {
             // p2pkit has been disabled
             Log.d("P2PKitStatusListener", "p2pkit disabled");
-            stopDiscovery();
+            if (P2PKit.isEnabled()) {
+                stopDiscovery();
+            }
         }
 
         @Override
         public void onError(StatusResult statusResult) {
             // an error occured, handle statusResult
-            stopDiscovery();
+            //stopDiscovery();
         }
 
         @Override
@@ -101,6 +113,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private void ResetListArr() {
+        // Reset array and update with Set;
+        test_list.clear();
+        for(Peer iter: nearbyPeers) {
+            test_list.add(iter.getPeerId().toString());
+        }
+    }
 
     // Handles discovery:
     private final DiscoveryListener mDiscoveryListener = new DiscoveryListener() {
@@ -112,7 +131,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPeerDiscovered(final Peer peer) {
             Log.d("DiscoveryListener", "Peer discovered: " + peer.getPeerId() + " with info: " + new String(peer.getDiscoveryInfo()));
-            nearbyPeers.add(peer);
+
+            if(peer.getProximityStrength() >= ProximityStrength.MEDIUM) {
+                if (!nearbyPeers.contains(peer)) {
+                    total_num_peers += 1;
+                    // Grab last updated:
+                    TextView lastUpdate = findViewById(R.id.lastUpdatedText);
+                    lastUpdate.setText(String.valueOf(lastUpdated.getTime()));
+
+                }
+                nearbyPeers.add(peer);
+                ResetListArr();
+            } else {
+                Log.d("DiscoveryListener", "Peer found but strength was not great so ignored!");
+            }
             // Later for proximity:
             //handlePeerDiscovered(peer);
         }
@@ -120,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPeerLost(final Peer peer) {
             Log.d("DiscoveryListener", "Peer lost: " + peer.getPeerId());
+            nearbyPeers.remove(peer);
+            ResetListArr();
         }
 
         @Override
@@ -130,6 +164,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onProximityStrengthChanged(Peer peer) {
             Log.d("DiscoveryListener", "Peer " + peer.getPeerId() + " changed proximity strength: " + peer.getProximityStrength());
+            // When changed, check if peer is within proximity strength tolerance
+
+            // Remove if too weak:
+            // MEDIUM is just a guess:
+            if(peer.getProximityStrength() < ProximityStrength.MEDIUM) {
+                nearbyPeers.remove(peer);
+                // Rest array:
+                ResetListArr();
+            }
         }
     };
 
@@ -139,6 +182,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView test = findViewById(R.id.textView2);
+        test.setText(String.valueOf(total_num_peers));
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_item, test_list);
+        ListView list = findViewById(R.id.main_list);
+        list.setAdapter(adapter);
+
         enableP2PKit();
     }
 
