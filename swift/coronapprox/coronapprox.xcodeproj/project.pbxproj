@@ -7,31 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		499203DC244D2836000D99D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499203DB244D2836000D99D9 /* AppDelegate.swift */; };
-		499203DE244D2836000D99D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499203DD244D2836000D99D9 /* SceneDelegate.swift */; };
-		499203E1244D2836000D99D9 /* Force_Field.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 499203DF244D2836000D99D9 /* Force_Field.xcdatamodeld */; };
-		499203E3244D2836000D99D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499203E2244D2836000D99D9 /* ContentView.swift */; };
-		499203E5244D2838000D99D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499203E4244D2838000D99D9 /* Assets.xcassets */; };
-		499203E8244D2838000D99D9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499203E7244D2838000D99D9 /* Preview Assets.xcassets */; };
-		499203EB244D2838000D99D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499203E9244D2838000D99D9 /* LaunchScreen.storyboard */; };
-		499203F3244D4980000D99D9 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499203F2244D4980000D99D9 /* ContentModel.swift */; };
+		49EF5CB12450A864005FD533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB02450A864005FD533 /* AppDelegate.swift */; };
+		49EF5CB32450A864005FD533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB22450A864005FD533 /* SceneDelegate.swift */; };
+		49EF5CB52450A864005FD533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB42450A864005FD533 /* ViewController.swift */; };
+		49EF5CB82450A864005FD533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49EF5CB62450A864005FD533 /* Main.storyboard */; };
+		49EF5CBB2450A864005FD533 /* coronapprox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB92450A864005FD533 /* coronapprox.xcdatamodeld */; };
+		49EF5CBD2450A869005FD533 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49EF5CBC2450A869005FD533 /* Assets.xcassets */; };
+		49EF5CC02450A869005FD533 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49EF5CBE2450A869005FD533 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		499203D8244D2836000D99D9 /* Force Field.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Force Field.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		499203DB244D2836000D99D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		499203DD244D2836000D99D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		499203E0244D2836000D99D9 /* Force_Field.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Force_Field.xcdatamodel; sourceTree = "<group>"; };
-		499203E2244D2836000D99D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		499203E4244D2838000D99D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		499203E7244D2838000D99D9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		499203EA244D2838000D99D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		499203EC244D2838000D99D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		499203F2244D4980000D99D9 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		49EF5CAD2450A864005FD533 /* coronapprox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coronapprox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49EF5CB02450A864005FD533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		49EF5CB22450A864005FD533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		49EF5CB42450A864005FD533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		49EF5CB72450A864005FD533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		49EF5CBA2450A864005FD533 /* coronapprox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coronapprox.xcdatamodel; sourceTree = "<group>"; };
+		49EF5CBC2450A869005FD533 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49EF5CBF2450A869005FD533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		49EF5CC12450A869005FD533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		499203D5244D2836000D99D9 /* Frameworks */ = {
+		49EF5CAA2450A864005FD533 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,82 +39,73 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		499203CF244D2836000D99D9 = {
+		49EF5CA42450A864005FD533 = {
 			isa = PBXGroup;
 			children = (
-				499203DA244D2836000D99D9 /* Force Field */,
-				499203D9244D2836000D99D9 /* Products */,
+				49EF5CAF2450A864005FD533 /* coronapprox */,
+				49EF5CAE2450A864005FD533 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		499203D9244D2836000D99D9 /* Products */ = {
+		49EF5CAE2450A864005FD533 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				499203D8244D2836000D99D9 /* Force Field.app */,
+				49EF5CAD2450A864005FD533 /* coronapprox.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		499203DA244D2836000D99D9 /* Force Field */ = {
+		49EF5CAF2450A864005FD533 /* coronapprox */ = {
 			isa = PBXGroup;
 			children = (
-				499203DB244D2836000D99D9 /* AppDelegate.swift */,
-				499203DD244D2836000D99D9 /* SceneDelegate.swift */,
-				499203E2244D2836000D99D9 /* ContentView.swift */,
-				499203F2244D4980000D99D9 /* ContentModel.swift */,
-				499203E4244D2838000D99D9 /* Assets.xcassets */,
-				499203E9244D2838000D99D9 /* LaunchScreen.storyboard */,
-				499203EC244D2838000D99D9 /* Info.plist */,
-				499203DF244D2836000D99D9 /* Force_Field.xcdatamodeld */,
-				499203E6244D2838000D99D9 /* Preview Content */,
+				49EF5CB02450A864005FD533 /* AppDelegate.swift */,
+				49EF5CB22450A864005FD533 /* SceneDelegate.swift */,
+				49EF5CB42450A864005FD533 /* ViewController.swift */,
+				49EF5CB62450A864005FD533 /* Main.storyboard */,
+				49EF5CBC2450A869005FD533 /* Assets.xcassets */,
+				49EF5CBE2450A869005FD533 /* LaunchScreen.storyboard */,
+				49EF5CC12450A869005FD533 /* Info.plist */,
+				49EF5CB92450A864005FD533 /* coronapprox.xcdatamodeld */,
 			);
-			path = "Force Field";
-			sourceTree = "<group>";
-		};
-		499203E6244D2838000D99D9 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				499203E7244D2838000D99D9 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
+			path = coronapprox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		499203D7244D2836000D99D9 /* Force Field */ = {
+		49EF5CAC2450A864005FD533 /* coronapprox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 499203EF244D2838000D99D9 /* Build configuration list for PBXNativeTarget "Force Field" */;
+			buildConfigurationList = 49EF5CC42450A869005FD533 /* Build configuration list for PBXNativeTarget "coronapprox" */;
 			buildPhases = (
-				499203D4244D2836000D99D9 /* Sources */,
-				499203D5244D2836000D99D9 /* Frameworks */,
-				499203D6244D2836000D99D9 /* Resources */,
+				49EF5CA92450A864005FD533 /* Sources */,
+				49EF5CAA2450A864005FD533 /* Frameworks */,
+				49EF5CAB2450A864005FD533 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Force Field";
-			productName = "Force Field";
-			productReference = 499203D8244D2836000D99D9 /* Force Field.app */;
+			name = coronapprox;
+			productName = coronapprox;
+			productReference = 49EF5CAD2450A864005FD533 /* coronapprox.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		499203D0244D2836000D99D9 /* Project object */ = {
+		49EF5CA52450A864005FD533 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = "Daniel Sylwestrowicz";
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = JADV;
 				TargetAttributes = {
-					499203D7244D2836000D99D9 = {
-						CreatedOnToolsVersion = 11.2.1;
+					49EF5CAC2450A864005FD533 = {
+						CreatedOnToolsVersion = 11.4.1;
 					};
 				};
 			};
-			buildConfigurationList = 499203D3244D2836000D99D9 /* Build configuration list for PBXProject "Force Field" */;
+			buildConfigurationList = 49EF5CA82450A864005FD533 /* Build configuration list for PBXProject "coronapprox" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -124,49 +113,56 @@
 				en,
 				Base,
 			);
-			mainGroup = 499203CF244D2836000D99D9;
-			productRefGroup = 499203D9244D2836000D99D9 /* Products */;
+			mainGroup = 49EF5CA42450A864005FD533;
+			productRefGroup = 49EF5CAE2450A864005FD533 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				499203D7244D2836000D99D9 /* Force Field */,
+				49EF5CAC2450A864005FD533 /* coronapprox */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		499203D6244D2836000D99D9 /* Resources */ = {
+		49EF5CAB2450A864005FD533 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499203EB244D2838000D99D9 /* LaunchScreen.storyboard in Resources */,
-				499203E8244D2838000D99D9 /* Preview Assets.xcassets in Resources */,
-				499203E5244D2838000D99D9 /* Assets.xcassets in Resources */,
+				49EF5CC02450A869005FD533 /* LaunchScreen.storyboard in Resources */,
+				49EF5CBD2450A869005FD533 /* Assets.xcassets in Resources */,
+				49EF5CB82450A864005FD533 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		499203D4244D2836000D99D9 /* Sources */ = {
+		49EF5CA92450A864005FD533 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499203E1244D2836000D99D9 /* Force_Field.xcdatamodeld in Sources */,
-				499203DC244D2836000D99D9 /* AppDelegate.swift in Sources */,
-				499203F3244D4980000D99D9 /* ContentModel.swift in Sources */,
-				499203E3244D2836000D99D9 /* ContentView.swift in Sources */,
-				499203DE244D2836000D99D9 /* SceneDelegate.swift in Sources */,
+				49EF5CB52450A864005FD533 /* ViewController.swift in Sources */,
+				49EF5CB12450A864005FD533 /* AppDelegate.swift in Sources */,
+				49EF5CB32450A864005FD533 /* SceneDelegate.swift in Sources */,
+				49EF5CBB2450A864005FD533 /* coronapprox.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		499203E9244D2838000D99D9 /* LaunchScreen.storyboard */ = {
+		49EF5CB62450A864005FD533 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				499203EA244D2838000D99D9 /* Base */,
+				49EF5CB72450A864005FD533 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		49EF5CBE2450A869005FD533 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49EF5CBF2450A869005FD533 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -174,7 +170,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		499203ED244D2838000D99D9 /* Debug */ = {
+		49EF5CC22450A869005FD533 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -224,7 +220,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -234,7 +230,7 @@
 			};
 			name = Debug;
 		};
-		499203EE244D2838000D99D9 /* Release */ = {
+		49EF5CC32450A869005FD533 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -278,7 +274,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -288,38 +284,36 @@
 			};
 			name = Release;
 		};
-		499203F0244D2838000D99D9 /* Debug */ = {
+		49EF5CC52450A869005FD533 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Force Field/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Force Field/Info.plist";
+				DEVELOPMENT_TEAM = 2QT77GZUJ9;
+				INFOPLIST_FILE = coronapprox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.utk.Force-Field";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.jadv.coronapprox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		499203F1244D2838000D99D9 /* Release */ = {
+		49EF5CC62450A869005FD533 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Force Field/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Force Field/Info.plist";
+				DEVELOPMENT_TEAM = 2QT77GZUJ9;
+				INFOPLIST_FILE = coronapprox/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.utk.Force-Field";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.jadv.coronapprox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -329,20 +323,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		499203D3244D2836000D99D9 /* Build configuration list for PBXProject "Force Field" */ = {
+		49EF5CA82450A864005FD533 /* Build configuration list for PBXProject "coronapprox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				499203ED244D2838000D99D9 /* Debug */,
-				499203EE244D2838000D99D9 /* Release */,
+				49EF5CC22450A869005FD533 /* Debug */,
+				49EF5CC32450A869005FD533 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		499203EF244D2838000D99D9 /* Build configuration list for PBXNativeTarget "Force Field" */ = {
+		49EF5CC42450A869005FD533 /* Build configuration list for PBXNativeTarget "coronapprox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				499203F0244D2838000D99D9 /* Debug */,
-				499203F1244D2838000D99D9 /* Release */,
+				49EF5CC52450A869005FD533 /* Debug */,
+				49EF5CC62450A869005FD533 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -350,17 +344,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		499203DF244D2836000D99D9 /* Force_Field.xcdatamodeld */ = {
+		49EF5CB92450A864005FD533 /* coronapprox.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				499203E0244D2836000D99D9 /* Force_Field.xcdatamodel */,
+				49EF5CBA2450A864005FD533 /* coronapprox.xcdatamodel */,
 			);
-			currentVersion = 499203E0244D2836000D99D9 /* Force_Field.xcdatamodel */;
-			path = Force_Field.xcdatamodeld;
+			currentVersion = 49EF5CBA2450A864005FD533 /* coronapprox.xcdatamodel */;
+			path = coronapprox.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 499203D0244D2836000D99D9 /* Project object */;
+	rootObject = 49EF5CA52450A864005FD533 /* Project object */;
 }

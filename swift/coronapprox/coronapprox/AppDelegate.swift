@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Force Field
+//  coronapprox
 //
-//  Created by Daniel Sylwestrowicz on 4/19/20.
-//  Copyright © 2020 Daniel Sylwestrowicz. All rights reserved.
+//  Created by Daniel Sylwestrowicz on 4/22/20.
+//  Copyright © 2020 JADV. All rights reserved.
 //
 
 import UIKit
@@ -14,10 +14,7 @@ import CoreBluetooth
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
     var locationManager: CLLocationManager?
-
-    //var userDefaults: UserDefaults
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         startMonitoringBeacons()
@@ -50,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
         */
-        let container = NSPersistentContainer(name: "Force_Field")
+        let container = NSPersistentContainer(name: "coronapprox")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -91,6 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     fileprivate func startMonitoringBeacons() {
+        print( "Monitoring for beacons!" )
         let proximityUUID = UUID( uuidString: "D61CD492-9264-4915-8C68-A1E490A354A3" ) ?? UUID()
         let beaconId = "edu.utk.Force-Field"
         let region = CLBeaconRegion( uuid: proximityUUID, identifier: beaconId )
