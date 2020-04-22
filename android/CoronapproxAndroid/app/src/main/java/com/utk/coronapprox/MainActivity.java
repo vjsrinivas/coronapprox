@@ -1,11 +1,18 @@
 package com.utk.coronapprox;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.util.Log;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,13 +39,19 @@ public class MainActivity extends AppCompatActivity {
     private final ArrayList<String> test_list = new ArrayList<>();
     private static int total_num_peers = 0;
     private Date lastUpdated = new Date();
+    private Button toggleP2PKit;
+    private TextView detailedError;
 
     public void enableP2PKit() {
         try {
+            toggleP2PKit.setClickable(false);
+            toggleP2PKit.setText("P2PKit Already Enabled");
             Log.d("P2PKit", "Enabling p2pkit");
             P2PKit.enable(this, APP_KEY, mStatusListener);
         } catch (AlreadyEnabledException e) {
             Log.d("P2PKit", "p2pkit is already enabled " + e.getLocalizedMessage());
+            toggleP2PKit.setClickable(false);
+            toggleP2PKit.setText("P2PKit Already Enabled");
         }
     }
 
@@ -47,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (P2PKit.isEnabled()) {
             P2PKit.disable();
+            toggleP2PKit.setClickable(true);
+            toggleP2PKit.setText("Enable P2PKit");
             //teardownPeers();
         }
     }
@@ -79,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
         UUID peerId = peer.getPeerId();
     }
 
+    private void updateP2PTextStatus(final String status) {
+        TextView p2pkitstatus = findViewById(R.id.textView9);
+        p2pkitstatus.setText(status);
+    }
+
     // Handles P2PKit's status callbacks (enable, disable, and error cases)
     // Tells if the package is actually properly loaded in before discoverying
     private final P2PKitStatusListener mStatusListener = new P2PKitStatusListener() {
@@ -87,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
             // ready to start discovery
             //UUID ownNodeId = P2PKit.getMyPeerId();
             //setupPeers(ownNodeId);
+            updateP2PTextStatus("True");
+            toggleP2PKit.setClickable(false);
+            toggleP2PKit.setText("P2PKit Already Enabled");
+            detailedError.setText("");
             startDiscovery();
         }
 
@@ -94,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
         public void onDisabled() {
             // p2pkit has been disabled
             Log.d("P2PKitStatusListener", "p2pkit disabled");
+            updateP2PTextStatus("False");
+            toggleP2PKit.setClickable(true);
+            toggleP2PKit.setText("Enable P2PKit");
             if (P2PKit.isEnabled()) {
                 stopDiscovery();
             }
@@ -103,6 +130,10 @@ public class MainActivity extends AppCompatActivity {
         public void onError(StatusResult statusResult) {
             // an error occured, handle statusResult
             //stopDiscovery();
+            Log.d("P2PKitStatusListener", "Error on P2PKit!" + statusResult.toString());
+            toggleP2PKit.setClickable(true);
+            toggleP2PKit.setText("Enable P2PKit");
+            updateP2PTextStatus("False");
         }
 
         @Override
@@ -110,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
             // an exception was thrown, reenable p2pkit
             //teardownPeers();
             Log.d("P2PKitStatusListener", "p2pkit threw an exception: " + Log.getStackTraceString(throwable));
+            toggleP2PKit.setClickable(true);
+            toggleP2PKit.setText("Enable P2PKit");
+            updateP2PTextStatus("False");
         }
     };
 
@@ -117,7 +151,8 @@ public class MainActivity extends AppCompatActivity {
         // Reset array and update with Set;
         test_list.clear();
         for(Peer iter: nearbyPeers) {
-            test_list.add(iter.getPeerId().toString());
+            String output = "UID: " + iter.getPeerId().toString() + " Strength: " + iter.getProximityStrength();
+            test_list.add(output);
         }
     }
 
@@ -126,6 +161,22 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onStateChanged(final int state) {
             Log.d("DiscoveryListener", "State changed: " + state);
+            if(state != 0) {
+                updateP2PTextStatus("False");
+                toggleP2PKit.setClickable(true);
+                toggleP2PKit.setText("Enable P2PKit");
+                if(state == DiscoveryListener.STATE_BLE_DISCOVERY_SUSPENDED || state == DiscoveryListener.STATE_BLE_DISCOVERY_UNSUPPORTED) {
+                    disableP2PKit();
+                }
+
+                if(state == DiscoveryListener.STATE_BLE_DISCOVERY_UNSUPPORTED) {
+                    detailedError.setText("BLE not supported!");
+                }
+
+                if(state == DiscoveryListener.STATE_BLE_DISCOVERY_SUSPENDED) {
+                    detailedError.setText("BLE discovery was suspended");
+                }
+            }
         }
 
         @Override
@@ -189,7 +240,32 @@ public class MainActivity extends AppCompatActivity {
         ListView list = findViewById(R.id.main_list);
         list.setAdapter(adapter);
 
-        enableP2PKit();
+        toggleP2PKit = findViewById(R.id.toggleStatus);
+        toggleP2PKit.setText("Enable P2PKit");
+
+        toggleP2PKit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enableP2PKit();
+            }
+        });
+
+        detailedError = findViewById(R.id.detailedStatusText);
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("Permissions", "Bluetooth not allowed yet!");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH}, 2);
+        }
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("Permissions", "Bluetooth Admin not allowed yet!");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_ADMIN}, 3);
+        }
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_PRIVILEGED) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH_PRIVILEGED}, 2);
+        }
+            enableP2PKit();
     }
 
     // MAIN EXECUTION EXITS HERE:
