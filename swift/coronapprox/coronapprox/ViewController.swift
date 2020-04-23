@@ -9,14 +9,16 @@
 import CoreLocation
 import CoreBluetooth
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController, CBPeripheralManagerDelegate, CLLocationManagerDelegate {
     
     var peripheralManager: CBPeripheralManager!
-    
+
     var locationManager: CLLocationManager?
     var regionCorona: CLBeaconRegion!
-    
+    var dailyNumber: Int!
+
     @IBAction func enabled(_ sender: UISwitch) {
         if(sender.isOn)
         {
@@ -29,6 +31,7 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate, CLLocationM
         }
     }
     @IBOutlet weak var on: UISwitch!
+    @IBOutlet weak var dailyNum: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +46,13 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate, CLLocationM
         locationManager!.requestWhenInUseAuthorization()
 
         locationManager!.delegate = self
-
+        dailyNumber = 0;
     }
 
     func startBroadcastingBeacon() {
         if peripheralManager.state == .poweredOn {
             peripheralManager.stopAdvertising()
             if on.isOn {
-                print( "Broadcasting Beacon" )
                 let peripheralData = regionCorona.peripheralData( withMeasuredPower: nil )
 
                 // Start broadcasting the beacon identity characteristics.
@@ -70,36 +72,46 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate, CLLocationM
 
     }
     func startMonitoringBeacons() {
-            print( "Monitoring for beacons!" )
             locationManager!.startMonitoring(for: regionCorona)
     }
+    func addInteraction()
+    {
+        dailyNumber += 1
+        dailyNum.text = String(dailyNumber)
+        let content = UNMutableNotificationContent()
+        content.title = "Device detected within 6ft!"
+        content.body = "Make sure you are social distancing"
+        content.sound = UNNotificationSound.default
+        let identifier = "coronaprox"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
+        let notificationCenter = UNUserNotificationCenter.current()
 
+        notificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Error \(error.localizedDescription)")
+            }
+        }
+    }
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        print("Detected person!")
-
+        
         if beacons.count > 0
         {
             let nearestBeacon = beacons.first!
             switch nearestBeacon.proximity {
                 
             case .near:
-                print("Detecter person near!")
-                break
+                addInteraction()
             case .immediate:
-                print("Detected person immediate")
-                break
-            case .far:
-                print("Detected person far!")
+                addInteraction()
                 break
             default:
-                print("Detected other!")
+                print("other distance")
             }
         }
         
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        print("Detected region!")
         if state == .inside {
             // Start ranging when inside a region.
             locationManager!.startRangingBeacons(in: regionCorona)
@@ -112,6 +124,7 @@ class ViewController: UIViewController, CBPeripheralManagerDelegate, CLLocationM
 
     func stopBroadcastingBeacon() {
         peripheralManager.stopAdvertising()
+        locationManager!.stopMonitoring(for: regionCorona)
     }
 
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
