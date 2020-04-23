@@ -2,7 +2,6 @@
 //  AppDelegate.swift
 //  coronapprox
 //
-//  Created by Daniel Sylwestrowicz on 4/22/20.
 //  Copyright © 2020 JADV. All rights reserved.
 //
 
@@ -18,13 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         
-        let notificationCenter = UNUserNotificationCenter.current()
+        //  Request permissions for alert and sound and print
+        let options: UNAuthorizationOptions = [ .alert, .sound ]
 
+        let notificationCenter = UNUserNotificationCenter.current()
+        
         notificationCenter.requestAuthorization(options: options) {
             (didAllow, error) in
             if !didAllow {
+                //  Could save that user is not using notifications
+                //  in the future
                 print("User has declined notifications")
             }
         }
