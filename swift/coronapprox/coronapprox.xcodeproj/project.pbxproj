@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		49EF5CB12450A864005FD533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB02450A864005FD533 /* AppDelegate.swift */; };
-		49EF5CB32450A864005FD533 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB22450A864005FD533 /* SceneDelegate.swift */; };
 		49EF5CB52450A864005FD533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB42450A864005FD533 /* ViewController.swift */; };
 		49EF5CB82450A864005FD533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49EF5CB62450A864005FD533 /* Main.storyboard */; };
 		49EF5CBB2450A864005FD533 /* coronapprox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49EF5CB92450A864005FD533 /* coronapprox.xcdatamodeld */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		49EF5CAD2450A864005FD533 /* coronapprox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coronapprox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49EF5CB02450A864005FD533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		49EF5CB22450A864005FD533 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		49EF5CB42450A864005FD533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		49EF5CB72450A864005FD533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		49EF5CBA2450A864005FD533 /* coronapprox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coronapprox.xcdatamodel; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				49EF5CB02450A864005FD533 /* AppDelegate.swift */,
-				49EF5CB22450A864005FD533 /* SceneDelegate.swift */,
 				49EF5CB42450A864005FD533 /* ViewController.swift */,
 				49EF5CB62450A864005FD533 /* Main.storyboard */,
 				49EF5CBC2450A869005FD533 /* Assets.xcassets */,
@@ -143,7 +140,6 @@
 			files = (
 				49EF5CB52450A864005FD533 /* ViewController.swift in Sources */,
 				49EF5CB12450A864005FD533 /* AppDelegate.swift in Sources */,
-				49EF5CB32450A864005FD533 /* SceneDelegate.swift in Sources */,
 				49EF5CBB2450A864005FD533 /* coronapprox.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +287,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QT77GZUJ9;
 				INFOPLIST_FILE = coronapprox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +306,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QT77GZUJ9;
 				INFOPLIST_FILE = coronapprox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

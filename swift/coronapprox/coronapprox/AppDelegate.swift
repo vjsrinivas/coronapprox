@@ -14,28 +14,11 @@ import CoreBluetooth
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var locationManager: CLLocationManager?
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        startMonitoringBeacons()
-
-        
         // Override point for customization after application launch.
         return true
-    }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
-    }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
     // MARK: - Core Data stack
@@ -83,36 +66,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-}
-
-extension AppDelegate {
-    
-    fileprivate func startMonitoringBeacons() {
-        print( "Monitoring for beacons!" )
-        let proximityUUID = UUID( uuidString: "D61CD492-9264-4915-8C68-A1E490A354A3" ) ?? UUID()
-        let beaconId = "edu.utk.Force-Field"
-        let region = CLBeaconRegion( uuid: proximityUUID, identifier: beaconId )
-        
-        locationManager = CLLocationManager()
-        if(locationManager!.responds(to: #selector(CLLocationManager.requestAlwaysAuthorization))) {
-            locationManager!.requestAlwaysAuthorization()
-        }
-        locationManager!.delegate = self
-        locationManager!.pausesLocationUpdatesAutomatically = false
-        
-        locationManager!.startMonitoring(for: region)
-
-    }
-}
-extension AppDelegate: CLLocationManagerDelegate {
-    
-    internal func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        
-        if beacons.count > 0 {
-            //Send notification or play sound
-        }
-        
-    }
-    
-    
 }
