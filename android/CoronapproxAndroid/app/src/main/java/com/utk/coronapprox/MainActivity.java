@@ -3,10 +3,8 @@ package com.utk.coronapprox;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.os.Bundle;
@@ -27,14 +25,13 @@ import ch.uepaa.p2pkit.P2PKit;
 import ch.uepaa.p2pkit.P2PKitStatusListener;
 import ch.uepaa.p2pkit.StatusResult;
 import ch.uepaa.p2pkit.discovery.DiscoveryInfoTooLongException;
-import ch.uepaa.p2pkit.discovery.DiscoveryInfoUpdatedTooOftenException;
 import ch.uepaa.p2pkit.discovery.DiscoveryListener;
 import ch.uepaa.p2pkit.discovery.DiscoveryPowerMode;
 import ch.uepaa.p2pkit.discovery.Peer;
 import ch.uepaa.p2pkit.discovery.ProximityStrength;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String APP_KEY = "ccdae0d705cd4f2d83540bc5a0c0b766";
+    private static final String APP_KEY = "";
     private final Set<Peer> nearbyPeers = new HashSet<>();
     private final ArrayList<String> test_list = new ArrayList<>();
     private static int total_num_peers = 0;
@@ -62,13 +59,11 @@ public class MainActivity extends AppCompatActivity {
             P2PKit.disable();
             toggleP2PKit.setClickable(true);
             toggleP2PKit.setText("Enable P2PKit");
-            //teardownPeers();
         }
     }
 
 
     public void startDiscovery() {
-        //byte[] ownDiscoveryData = loadOwnDiscoveryData();
         byte[] ownDiscoveryData = "Test".getBytes();
 
         try {
@@ -105,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onEnabled() {
             // ready to start discovery
-            //UUID ownNodeId = P2PKit.getMyPeerId();
-            //setupPeers(ownNodeId);
             updateP2PTextStatus("True");
             toggleP2PKit.setClickable(false);
             toggleP2PKit.setText("P2PKit Already Enabled");
@@ -129,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onError(StatusResult statusResult) {
             // an error occured, handle statusResult
-            //stopDiscovery();
             Log.d("P2PKitStatusListener", "Error on P2PKit!" + statusResult.toString());
             toggleP2PKit.setClickable(true);
             toggleP2PKit.setText("Enable P2PKit");
@@ -139,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onException(Throwable throwable) {
             // an exception was thrown, reenable p2pkit
-            //teardownPeers();
             Log.d("P2PKitStatusListener", "p2pkit threw an exception: " + Log.getStackTraceString(throwable));
             toggleP2PKit.setClickable(true);
             toggleP2PKit.setText("Enable P2PKit");
@@ -149,9 +140,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void ResetListArr() {
         // Reset array and update with Set;
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_item, test_list);
+        ListView list = findViewById(R.id.main_list);
+        list.setAdapter(adapter);
+
         test_list.clear();
         for(Peer iter: nearbyPeers) {
             String output = "UID: " + iter.getPeerId().toString() + " Strength: " + iter.getProximityStrength();
+            Log.d("ResetListArr", output);
             test_list.add(output);
         }
     }
@@ -162,10 +158,10 @@ public class MainActivity extends AppCompatActivity {
         public void onStateChanged(final int state) {
             Log.d("DiscoveryListener", "State changed: " + state);
             if(state != 0) {
-                updateP2PTextStatus("False");
                 toggleP2PKit.setClickable(true);
                 toggleP2PKit.setText("Enable P2PKit");
                 if(state == DiscoveryListener.STATE_BLE_DISCOVERY_SUSPENDED || state == DiscoveryListener.STATE_BLE_DISCOVERY_UNSUPPORTED) {
+                    updateP2PTextStatus("False");
                     disableP2PKit();
                 }
 
@@ -182,22 +178,24 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPeerDiscovered(final Peer peer) {
             Log.d("DiscoveryListener", "Peer discovered: " + peer.getPeerId() + " with info: " + new String(peer.getDiscoveryInfo()));
-
+            Log.d("DiscoveryListener", String.valueOf(peer.getProximityStrength()));
             if(peer.getProximityStrength() >= ProximityStrength.MEDIUM) {
                 if (!nearbyPeers.contains(peer)) {
+                    TextView test = findViewById(R.id.textView2);
                     total_num_peers += 1;
+                    test.setText(String.valueOf(total_num_peers));
+
                     // Grab last updated:
                     TextView lastUpdate = findViewById(R.id.lastUpdatedText);
                     lastUpdate.setText(String.valueOf(lastUpdated.getTime()));
 
                 }
+                Log.d("DiscoveryListener", "Adding to nearbyPeers");
                 nearbyPeers.add(peer);
                 ResetListArr();
             } else {
                 Log.d("DiscoveryListener", "Peer found but strength was not great so ignored!");
             }
-            // Later for proximity:
-            //handlePeerDiscovered(peer);
         }
 
         @Override
@@ -210,6 +208,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPeerUpdatedDiscoveryInfo(Peer peer) {
             Log.d("DiscoveryListener", "Peer updated: " + peer.getPeerId() + " with new info: " + new String(peer.getDiscoveryInfo()));
+            if(peer.getProximityStrength() < ProximityStrength.MEDIUM) {
+                nearbyPeers.remove(peer);
+                // Rest array:
+                ResetListArr();
+            } else {
+                nearbyPeers.remove(peer);
+                nearbyPeers.add(peer);
+                ResetListArr();
+            }
         }
 
         @Override
@@ -222,6 +229,10 @@ public class MainActivity extends AppCompatActivity {
             if(peer.getProximityStrength() < ProximityStrength.MEDIUM) {
                 nearbyPeers.remove(peer);
                 // Rest array:
+                ResetListArr();
+            } else {
+                nearbyPeers.remove(peer);
+                nearbyPeers.add(peer);
                 ResetListArr();
             }
         }
@@ -251,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         detailedError = findViewById(R.id.detailedStatusText);
-
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH}, 2);
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             Log.d("Permissions", "Bluetooth not allowed yet!");
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BLUETOOTH}, 2);
